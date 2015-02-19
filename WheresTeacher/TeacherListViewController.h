@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  TeacherListViewController.h
 //  WheresTeacher
 //
 //  Created by Shangqing Zhang on 2/19/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface TeacherListViewController : UIViewController
 
 @end
-
