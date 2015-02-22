@@ -2,12 +2,16 @@
 //  WyzAntClient.h
 //  WheresTeacher
 //
-//  Created by Shangqing Zhang on 2/19/15.
+//  Created by Li Jiao on 2/21/15.
 //  Copyright (c) 2015 yahoo. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BDBOAuth1RequestOperationManager.h"
+#import "Teacher.h"
 
-@interface WyzAntClient : NSObject
+@interface WyzAntClient : BDBOAuth1RequestOperationManager
 
++ (WyzAntClient *)sharedInstance;
+
+- (AFHTTPRequestOperation *)searchTeachers:(NSDictionary *)params success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 @end

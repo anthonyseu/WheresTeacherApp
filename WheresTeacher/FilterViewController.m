@@ -7,15 +7,20 @@
 //
 
 #import "FilterViewController.h"
+#import "WyzAntClient.h"
 
 @interface FilterViewController ()
-
+@property (nonatomic, weak) NSArray *tutorArray;
 @end
 
 @implementation FilterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSDictionary *params = @{@"Zip": @"94404",
+                             @"ResultsFormat": @"JSON"};
+    [self fetchTutors:params];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -24,6 +29,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)fetchTutors:(NSDictionary *)params {
+    [[WyzAntClient sharedInstance] searchTeachers:params success:^(AFHTTPRequestOperation *operation, id response) {
+        NSLog(@"success");
+        self.tutorArray = [Teacher teachersWithDictionaries:response];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"fail: %@", [error localizedDescription]);
+    }];
+}
 /*
 #pragma mark - Navigation
 
